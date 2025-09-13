@@ -9,6 +9,6 @@ public class GetProductByIdQueryHandler(IDocumentSession session, ILogger<GetPro
 	public async Task<GetProductByIdResult> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
 	{
 		var product =  await session!.LoadAsync<Product>(request.Id, cancellationToken);
-		return product is null ? throw new ProductNotFoundException() : new GetProductByIdResult(product);
+		return product is null ? throw new ProductNotFoundException(request.Id) : new GetProductByIdResult(product);
 	}
 }
