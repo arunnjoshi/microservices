@@ -46,7 +46,7 @@ internal class CreateProductCommandHandler(IDocumentSession session) : ICommandH
 		var product = new Product
 		{
 			Name = command.Name,
-			Categories = command.Category,
+			Category = command.Category,
 			Description = command.Description,
 			ImageFile = command.ImageFile,
 			Price = command.Price,

@@ -7,5 +7,5 @@ public class Product
 	public string Description { get; set; }  = null!;
 	public string ImageFile { get; set; }  = null!;
 	public decimal Price { get; set; }  = default;
-	public List<string> Categories { get; set; }  = [];
+	public List<string> Category { get; set; }  = [];
 }

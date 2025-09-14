@@ -54,7 +54,7 @@ public class UpdateProductCommandHandler(IDocumentSession session) : ICommandHan
 			throw new ProductNotFoundException(request.Id);
 		}
 		product.Name = request.Name;
-		product.Categories = request.Category;
+		product.Category = request.Category;
 		product.Description = request.Description;
 		product.ImageFile = request.ImageFile;
 		product.Price = request.Price;
