@@ -10,7 +10,7 @@ builder.Services.AddMediatR(c =>
 	c.AddOpenBehavior(typeof(ValidationBehavior<,>));
 	c.AddOpenBehavior(typeof(LoggingBehavior<,>));
 });
-
+builder.Services.AddValidatorsFromAssembly(programAssembly);
 var app = builder.Build();
 
 //Configure the HTTP request pipeline
