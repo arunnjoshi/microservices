@@ -2,7 +2,7 @@
 
 public record StoreBasketCommand(ShoppingCart Cart) : ICommand<StoreBasketResult>;
 
-public record StoreBasketResult(bool IsSuccess);
+public record StoreBasketResult(string UserName);
 
 public class StoreBasketCommandValidator : AbstractValidator<StoreBasketCommand>
 {
@@ -19,12 +19,12 @@ public class StoreBasketCommandValidator : AbstractValidator<StoreBasketCommand>
 	}
 }
 
-public class StoreBasketHandler : ICommandHandler<StoreBasketCommand, StoreBasketResult>
+public class StoreBasketHandler(IBasketRepository basketRepository) : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
 	public async Task<StoreBasketResult> Handle(StoreBasketCommand request, CancellationToken cancellationToken)
 	{
 		ShoppingCart cart = request.Cart;
-
-		return new StoreBasketResult(true);
+		await basketRepository.StoreBasket(cart, cancellationToken);
+		return new StoreBasketResult(request.Cart.UserName);
 	}
 }
