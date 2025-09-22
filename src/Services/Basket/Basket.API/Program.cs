@@ -33,6 +33,12 @@ builder.Services.AddStackExchangeRedisCache(o =>
 builder.Services.AddHealthChecks()
 	.AddNpgSql(connectionString)
 	.AddRedis(cacheConnectionString);
+
+builder.Services.AddGrpcClient<Discount.Grpc.DiscountProtoService.DiscountProtoServiceClient>(o =>
+{
+	o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});
+
 var app = builder.Build();
 
 //Configure the HTTP request pipeline
