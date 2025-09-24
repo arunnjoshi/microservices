@@ -1,3 +1,4 @@
+using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
@@ -34,9 +35,19 @@ builder.Services.AddHealthChecks()
 	.AddNpgSql(connectionString)
 	.AddRedis(cacheConnectionString);
 
-builder.Services.AddGrpcClient<Discount.Grpc.DiscountProtoService.DiscountProtoServiceClient>(o =>
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
 {
-	o.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+	options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+	var handler = new HttpClientHandler
+	{
+		ServerCertificateCustomValidationCallback =
+		HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+	};
+
+	return handler;
 });
 
 var app = builder.Build();
