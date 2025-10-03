@@ -106,7 +106,7 @@ public class OrderConfigurations : IEntityTypeConfiguration<Order>
 						.HasMaxLength(50)
 						.IsRequired();
 
-			paymentBuilder.Property(n => n.ExpirationDate)
+			paymentBuilder.Property(n => n.Expiration)
 						.HasMaxLength(10)
 						.IsRequired();
 

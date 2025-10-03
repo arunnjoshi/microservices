@@ -4,15 +4,20 @@ public record Payment
 {
 	public string CardNumber { get; } = default!;
 	public string CardName { get; } = default!;
-	public string ExpirationDate { get; } = default!;
+	public string Expiration { get; } = default!;
 	public string CVV { get; } = default!;
 	public int PaymentMethod { get; } = default!;
+
+	protected Payment()
+	{
+		
+	}
 
 	private Payment(string cardNumber, string cardName, string expirationDate, string cvv, int paymentMethod)
 	{
 		CardNumber = cardNumber;
 		CardName = cardName;
-		ExpirationDate = expirationDate;
+		Expiration = expirationDate;
 		PaymentMethod = paymentMethod;
 		CVV = cvv;
 	}
