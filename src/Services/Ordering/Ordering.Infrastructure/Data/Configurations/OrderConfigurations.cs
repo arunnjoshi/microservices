@@ -23,7 +23,7 @@ public class OrderConfigurations : IEntityTypeConfiguration<Order>
 				.WithMany()
 				.HasForeignKey(x => x.CustomerId);
 
-		builder.HasMany(x => x.orderItems).WithOne()
+		builder.HasMany(x => x.OrderItems).WithOne()
 				.HasForeignKey(x => x.OrderId);
 
 		builder.ComplexProperty(x => x.OrderName, nameBuilder =>
