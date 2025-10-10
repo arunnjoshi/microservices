@@ -5,6 +5,6 @@ public record PaymentDto
 	string CardNumber ,
 	string CardName ,
 	string Expiration ,
-	string CVV ,
+	string Cvv ,
 	int PaymentMethod 
 );

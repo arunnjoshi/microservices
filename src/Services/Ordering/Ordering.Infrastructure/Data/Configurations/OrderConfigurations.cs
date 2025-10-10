@@ -110,7 +110,7 @@ public class OrderConfigurations : IEntityTypeConfiguration<Order>
 						.HasMaxLength(10)
 						.IsRequired();
 
-			paymentBuilder.Property(n => n.CVV)
+			paymentBuilder.Property(n => n.Cvv)
 						.HasMaxLength(180)
 						.IsRequired();
 

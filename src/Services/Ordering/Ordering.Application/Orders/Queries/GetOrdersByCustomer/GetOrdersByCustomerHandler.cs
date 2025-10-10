@@ -8,7 +8,7 @@ public class GetOrdersByCustomerHandler(IApplicationDbContext _context) : IQuery
 		var orders = await _context.Orders.Include(x => x.OrderItems)
 											.AsNoTracking()
 											.Where(x => x.CustomerId == customerId)
-											.OrderBy(x => x.OrderName)
+											.OrderBy(x => x.OrderName.Value)
 											.ToListAsync(cancellationToken);
 		return new GetOrdersByCustomerResult(orders.ToOrderDtoList());
 	}

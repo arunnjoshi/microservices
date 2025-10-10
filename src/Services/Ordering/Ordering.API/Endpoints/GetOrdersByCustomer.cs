@@ -7,7 +7,7 @@ public class GetOrdersByCustomer : ICarterModule
 	{
 		app.MapGet("/Orders/Customer/{CustomerId}", async (Guid customerId, ISender sender) =>
 		{
-			var query = new GetOrdersByCustomerQuery(customerId);
+		var query = new GetOrdersByCustomerQuery(customerId);
 			var result = await sender.Send(query);
 			var response = result.Adapt<GetOrderByCustomerResponse>();
 			return Results.Ok(response);
