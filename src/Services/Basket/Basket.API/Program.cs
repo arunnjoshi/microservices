@@ -1,6 +1,7 @@
 using Discount.Grpc;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using BuildingBlocks.Messaging.MassTransit;
 
 var programAssembly = typeof(Program).Assembly;
 
@@ -49,6 +50,7 @@ builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
 
 	return handler;
 });
+builder.Services.AddMessageBroker(builder.Configuration);
 
 var app = builder.Build();
 
