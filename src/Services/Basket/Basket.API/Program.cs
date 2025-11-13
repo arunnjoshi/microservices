@@ -26,15 +26,15 @@ builder.Services.AddMarten(o =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
-builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+//builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
-builder.Services.AddStackExchangeRedisCache(o =>
-{
-	o.Configuration = cacheConnectionString;
-});
-builder.Services.AddHealthChecks()
-	.AddNpgSql(connectionString)
-	.AddRedis(cacheConnectionString);
+//builder.Services.AddStackExchangeRedisCache(o =>
+//{
+//	o.Configuration = cacheConnectionString;
+//});
+//builder.Services.AddHealthChecks()
+//	.AddNpgSql(connectionString)
+//	.AddRedis(cacheConnectionString);
 
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
 {

@@ -3,7 +3,7 @@ namespace Basket.API.Basket.CheckoutBasket;
 
 public record CheckoutBasketRequest(BasketCheckoutDto BasketCheckoutDto);
 
-public record CheckoutBasketResponse(bool Success);
+public record CheckoutBasketResponse(bool IsSuccess);
 
 public class CheckoutBasketEndpoint : ICarterModule
 {
