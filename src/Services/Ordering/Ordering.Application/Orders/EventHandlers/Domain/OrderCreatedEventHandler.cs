@@ -9,7 +9,7 @@ public class OrderCreatedEventHandler(ILogger<OrderCreatedEventHandler> _logger,
 	public async Task Handle(OrderCreatedEvent notification, CancellationToken cancellationToken)
 	{
 		_logger.LogInformation("Domain Event handle: {DomainEvent}", notification.GetType());
-		if(!await featureManager.IsEnabledAsync("OrderFulfillment"))
+		if(await featureManager.IsEnabledAsync("OrderFulfillment"))
 		{
 			var orderCreatedIntegrationEvent = notification.order.ToOrderDto();
 			await publishEndpoint.Publish(orderCreatedIntegrationEvent, cancellationToken);
