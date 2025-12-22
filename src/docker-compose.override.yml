@@ -51,7 +51,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
     restart: always
     ports:
-      - "6011:5672"
+      - "5672:5672"
       - "15672:15672"
   
   # CataLogAPI
@@ -81,9 +81,9 @@ services:
       - "ConnectionStrings__Database=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres;Include Error Detail=true"
       - "ConnectionStrings__Redis=distributedcache:7000:"
       - "GrpcSettings__DiscountUrl=https://discount.grpc:8081"
-      - "MessageBrokder__Host=ampq://ecommerce-mq:6011"
-      - "MessageBrokder__UserName=guest"
-      - "MessageBrokder__Password=guest"
+      - "MessageBroker__Host=amqp://ecommerce-mq:5672"
+      - "MessageBroker__UserName=guest"
+      - "MessageBroker__Password=guest"
     ports:
       - "6001:8080"
       - "6061:8081"
